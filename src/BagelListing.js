@@ -4,7 +4,7 @@ import "./BagelListing.css"
 export default function BagelListing(props) {
     return(
         <div>
-            <p>{props.type}: {props.rating}</p>
+            <p>{props.name}: {props.rating}</p>
         </div>
     )
 }
