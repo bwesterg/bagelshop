@@ -4,16 +4,9 @@ import "./BagelList.css";
 import BagelListing from './BagelListing';
 
 export default function BagelList(props){
-    // const bagels = [{
-    //     type: "Plain",
-    //     rating: 6,
-    // }, {
-    //     type: "Everything",
-    //     rating: 2,
-    // }]
 
     const $bagels = props.bagels.map(bagel => {
-        return <li>
+        return <li key={bagel.id}>
             <BagelListing name={bagel.name} rating={bagel.rating} />
         </li>
     })
