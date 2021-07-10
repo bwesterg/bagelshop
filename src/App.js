@@ -58,6 +58,15 @@ class App extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ name, rating })
+    }).then(response=> response.json())
+    .then(bagel => {
+      this.setState({
+        bagels: [...this.state.bagels, bagel ],
+        newBagel: {
+          name: "",
+          rating: 5,
+        }
+      })
     })
   }
 
