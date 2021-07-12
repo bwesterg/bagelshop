@@ -3,16 +3,31 @@ import './App.css';
 
 import BagelList from './BagelList';
 import AddNewBagel from './AddNewBagel';
+import FilterBox from './FilterBox';
 
-// const backendURL = 'http://localhost:3000';
 const BASE_URL = "http://localhost:3000"
 
 class App extends Component {
   state = {
     bagels: [],
     isAddNewBagelShowing: false,
+    searchTerm: "",
   }
   
+  filteredBagels = () => this.state.bagels
+    .filter(bagel => bagel.name && bagel.rating)
+    .filter(bagel => {
+      return bagel.name
+        .toLowerCase()
+        .includes(this.state.searchTerm.toLowerCase())
+  })
+
+  updateSearchTerm = event => {
+    this.setState({
+        searchTerm: event.target.value,
+    })
+}
+
   componentDidMount(){
     const bagelsURL = `${BASE_URL}/bagels`;
     fetch(bagelsURL)
@@ -50,9 +65,13 @@ class App extends Component {
           <h1>Bagel Shop</h1>
         </header>
         <main>
+          <FilterBox 
+            searchTerm={this.state.searchTerm}
+            updateSearchTerm={this.updateSearchTerm}
+          />
           <section>
             <h2>Bagels</h2>
-              <BagelList bagels={this.state.bagels} />
+              <BagelList bagels={this.filteredBagels()} />
           </section>
           <button onClick={this.toggleAddNewBagel}>
               {
