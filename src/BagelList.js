@@ -12,6 +12,7 @@ export default function BagelList(props){
                 name={bagel.name} 
                 rating={bagel.rating}
                 deleteBagel={props.deleteBagel} 
+                editBagel={props.editBagel}
             />
         </li>
     })

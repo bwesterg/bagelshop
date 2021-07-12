@@ -13,7 +13,11 @@
     color: hsl(0, 50%, 50%)
 }
 
+.bagel-listing img + img {
+    margin-left: 1rem;
+}
+
 .bagel-listing img {
-    max-width: 25px;
-    max-height: 25px;
+    max-width: 20px;
+    max-height: 20px;
 }
