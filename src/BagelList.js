@@ -7,7 +7,12 @@ export default function BagelList(props){
 
     const $bagels = props.bagels.map(bagel => {
         return <li key={bagel.id}>
-            <BagelListing name={bagel.name} rating={bagel.rating} />
+            <BagelListing 
+                id={bagel.id}
+                name={bagel.name} 
+                rating={bagel.rating}
+                deleteBagel={props.deleteBagel} 
+            />
         </li>
     })
 

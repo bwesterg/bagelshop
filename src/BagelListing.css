@@ -1,0 +1,19 @@
+.bagel-listing {
+    max-width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 2px hsl(0, 0%, 80%);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.bagel-listing i, img {
+    cursor: pointer;
+    color: hsl(0, 50%, 50%)
+}
+
+.bagel-listing img {
+    max-width: 25px;
+    max-height: 25px;
+}

@@ -37,6 +37,20 @@ class App extends Component {
     })
   }
   
+  deleteBagel = id => {
+    fetch(`${BASE_URL}/bagels/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }).then(() => {
+      this.setState({
+        bagels: this.state.bagels.filter(bagel => bagel.id !== id)
+      })
+  })
+
+  }
+
   postBagel = bagel => {
     fetch(`${BASE_URL}/bagels`, {
       method: "POST",
@@ -71,7 +85,10 @@ class App extends Component {
           />
           <section>
             <h2>Bagels</h2>
-              <BagelList bagels={this.filteredBagels()} />
+              <BagelList 
+                bagels={this.filteredBagels()} 
+                deleteBagel={this.deleteBagel}
+              />
           </section>
           <button onClick={this.toggleAddNewBagel}>
               {
