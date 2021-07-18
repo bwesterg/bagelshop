@@ -13,6 +13,13 @@ body {
 
 header {
   padding: 3rem;
+  background-color: beige;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  
 }
 
 main {

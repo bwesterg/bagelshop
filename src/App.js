@@ -5,12 +5,14 @@ import BagelList from './BagelList';
 import AddNewBagel from './AddNewBagel';
 import FilterBox from './FilterBox';
 
+
 const BASE_URL = "http://localhost:3000"
 
 class App extends Component {
   state = {
     bagels: [],
     isAddNewBagelShowing: false,
+    isEditingBagel: false,
     searchTerm: "",
   }
   
@@ -48,7 +50,6 @@ class App extends Component {
         bagels: this.state.bagels.filter(bagel => bagel.id !== id)
       })
   })
-
   }
 
   postBagel = bagel => {
@@ -66,9 +67,30 @@ class App extends Component {
     })
   }
 
+  modifyBagel = bagel => {
+    fetch(`${BASE_URL}/bagels`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bagel)
+    }).then(response=> response.json())
+    .then(editedBagel => {
+      this.setState({
+        bagels: [...this.state.bagels, editedBagel ],
+      })
+    })
+  }
+
   toggleAddNewBagel = () => {
     this.setState({
       isAddNewBagelShowing: !this.state.isAddNewBagelShowing
+    })
+  }
+
+  toggleEditBagel = () => {
+    this.setState({
+      isEditingBagelShowing: !this.state.isEditingBagelShowing
     })
   }
 
@@ -88,6 +110,7 @@ class App extends Component {
               <BagelList 
                 bagels={this.filteredBagels()} 
                 deleteBagel={this.deleteBagel}
+                editBagel={this.editBagel}
               />
           </section>
           <button onClick={this.toggleAddNewBagel}>
@@ -96,13 +119,26 @@ class App extends Component {
                 ? "Close New Bagel Form"
                 : "Add Another Bagel" 
               }  
-                {/* Add Add Another Bagel */}
               </button>
           {
             this.state.isAddNewBagelShowing
               ? <AddNewBagel addBagel={this.addBagel} />
               : null
           }
+
+          {/* // */}
+          {/* <button onClick={this.toggleEditingBagel}>
+              {
+                this.state.isEditingBagelShowing
+                ? "Close Edit Bagel Form"
+                : "Edit Bagel" 
+              }  
+              </button>
+          {
+            this.state.isEditBagelShowing
+              ? <EditBagel editBagel={this.editBagel} />
+              : null
+          } */}
         </main>
       </div>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import "./BagelListing.css"
 
 export default function BagelListing(props) {
+
     const deleteBagel = event => {
         props.deleteBagel(props.id)
     }
@@ -9,10 +10,10 @@ export default function BagelListing(props) {
     const editBagel = event => {
         props.editBagel(props.id)
     }
+
     return(
         <div className="bagel-listing">
             <p>{props.name}: {props.rating} </p>
-            {/* <i className="fa fa-times-circle" onClick={deleteBagel}>delete</i> */}
                 <span>
                     <img 
                         src="https://i.pinimg.com/originals/6e/35/ef/6e35ef7687065eb1e4c037781f3c4cdc.png" 
