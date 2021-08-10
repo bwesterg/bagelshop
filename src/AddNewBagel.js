@@ -15,6 +15,8 @@ export default class AddNewBagel extends Component {
         newBagel[property] = event.target.value
         this.setState({ newBagel })
     }
+    //check react documents for another way to do this
+    
 
     addBagel = event => {
         event.preventDefault()
